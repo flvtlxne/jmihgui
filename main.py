@@ -10,11 +10,11 @@ class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
         super().__init__()
         self.setupUi(self) #for initialize my design
     
-    def main():
+def main():
         app = QtWidgets.QApplication(sys.argv)
         window = ExampleApp()
         window.show()
         app.exec_()
 
-    if __name__ == '__main__':
+if __name__ == '__main__':
         main()
