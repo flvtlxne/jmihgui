@@ -1,15 +1,24 @@
-import sys #for argv to QApplication
+import sys
 import typing
+import os
 from PyQt5 import QtCore, QtWidgets, QtGui
 from PyQt5.QtWidgets import QWidget, QApplication
-import design #converted design.ui
+import design
 
 class ExampleApp(QtWidgets.QMainWindow, design.Ui_MainWindow):
     def __init__(self):
-        #for access to data in design.py 
         super().__init__()
-        self.setupUi(self) #for initialize my design
-    
+        self.setupUi(self)
+        self.btnBrowse.clicked.connect(self.browse_file)
+
+    def browse_file(self):
+          self.listWidget.clear()
+          directory = QtWidgets.QFileDialog.getExistingDirectory(self, "Choose file")
+
+          if directory:
+                for file_name in os.listdir(directory):
+                      self.listWidget.addItem(file_name)
+
 def main():
         app = QtWidgets.QApplication(sys.argv)
         window = ExampleApp()
